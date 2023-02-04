@@ -20,22 +20,24 @@ import error404 from "./elements/error404";
 
 import { BrowserRouter, Switch, Route  } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
-
+import HttpsRedirect from 'react-https-redirect';
 class Root extends Component{
     render(){
         return(
-            <BrowserRouter basename={'/'}>
-                <PageScrollTop>
-                    <Switch>
-                        <Route exact path={`${process.env.PUBLIC_URL}/`} component={CorporateBusiness}/>
-                        {/* Element Layot */}
-                        <Route exact path={`${process.env.PUBLIC_URL}/service-details`} component={ServiceDetails}/>
-                        <Route exact path={`${process.env.PUBLIC_URL}/contact`} component={Contact}/>                        
-                        <Route path={`${process.env.PUBLIC_URL}/404`} component={error404}/>
-                        <Route component={error404}/>
-                    </Switch>
-                </PageScrollTop>
-            </BrowserRouter>
+            <HttpsRedirect>
+                <BrowserRouter basename={'/'}>
+                    <PageScrollTop>
+                        <Switch>
+                            <Route exact path={`${process.env.PUBLIC_URL}/`} component={CorporateBusiness}/>
+                            {/* Element Layot */}
+                            <Route exact path={`${process.env.PUBLIC_URL}/service-details`} component={ServiceDetails}/>
+                            <Route exact path={`${process.env.PUBLIC_URL}/contact`} component={Contact}/>                        
+                            <Route path={`${process.env.PUBLIC_URL}/404`} component={error404}/>
+                            <Route component={error404}/>
+                        </Switch>
+                    </PageScrollTop>
+                </BrowserRouter>
+            </HttpsRedirect>
         )
     }
 }
